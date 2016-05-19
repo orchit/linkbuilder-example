@@ -1,5 +1,6 @@
 package com.example;
 
+import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +14,9 @@ public class LinkController {
     @RequestMapping
     public Resource<String> home(){
         return new Resource<>("Linking your links",
-                linkTo(methodOn(LinkController.class).home()).withSelfRel()
+                linkTo(methodOn(LinkController.class).home()).withRel("linkto"),
+                new Link("http://springcloudserver/").withSelfRel()
+
         );
     }
 }

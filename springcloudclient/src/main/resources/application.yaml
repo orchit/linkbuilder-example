@@ -21,4 +21,9 @@ security:
 server:
   port: 8081
 
+zuul:
+  ignoredServices: '*'
+  routes:
+    springcloudserver:
+      path: /api/springcloudserver/**
 
