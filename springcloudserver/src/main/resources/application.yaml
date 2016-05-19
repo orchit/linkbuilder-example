@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: springcloudserver
+info.app.name: ${spring.application.name}
+
+eureka:
+  instance:
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 10
+    statusPageUrlPath: /internal/info
+    healthCheckUrlPath: /internal/health
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+      password: ${security.user.password}
+  client:
+    serviceUrl:
+      defaultZone: ${vcap.services.${PREFIX:}eureka.credentials.uri:http://user:password@localhost:8762}/eureka/
+
+security:
+  user:
+    password: 's3cr3tS'
+
+
